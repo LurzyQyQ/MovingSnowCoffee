@@ -5,11 +5,23 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    Pid: "",
+    Shop: "",
+    Count: "",
+    Token: "",
   },
   mutations: {
-  },
-  actions: {
-  },
-  modules: {
+    getPid(state, payload){
+      state.Pid = payload;
+    },
+    getShop(state, payload){
+      state.Shop = payload;
+    },
+    getCount(state, payload){
+      state.Count = payload;
+    },
+    getToken(state, payload){
+      state.Token = payload;
+    },
   }
 })

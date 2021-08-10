@@ -1,0 +1,88 @@
+vue + vue-router + vue-axios + vant
+
+安装nodejs
+
+查看node版本
+node -v
+
+查看npm版本
+npm -v
+
+全局安装vue脚手架
+npm i @vue/cli -g
+
+查看vue脚手架版本
+vue -V
+
+创建vue项目
+vue create ruixing-coffee
+
+https://vant-contrib.gitee.io/vant/#/zh-CN
+
+安装vant
+npm i vant --save
+
+按需引入vant组件
+安装babel-plugin-import插件
+npm i babel-plugin-import --save-dev
+
+在babel.config.js写入按需要导入vant组件配置
+module.exports = {
+  presets: [
+    '@vue/cli-plugin-babel/preset'
+  ],
+
+  //按需引入vant组件配置
+  plugins: [
+    ['import', {
+      libraryName: 'vant',
+      libraryDirectory: 'es',
+      style: true
+    }, 'vant']
+  ]
+}
+
+测试vant组件是否正常使用
+在main.js导入vant组件
+//从vant导入组件
+import { Button } from 'vant';
+
+//全局注册Button组件
+Vue.use(Button);
+
+然后再其他组件使用Button组件
+<van-button type="primary">主要按钮</van-button>
+
+Rem布局适配
+postcss-pxtorem 是一款 PostCSS 插件，用于将 px 单位转化为 rem 单位
+安装postcss-pxtorem
+npm i postcss-pxtorem@5.1.1 --save-dev
+注意：由于postcss-pxtorem 6.0.0以上的版本会存在一些兼容性问题, 建议降级安装5.1.1
+
+lib-flexible 用于设置 rem 基准值
+安装lib-flexible
+npm i lib-flexible --save-dev
+
+然后在根目录创建postcss.config.js配置文件
+写入以下代码
+module.exports = {
+  plugins: {
+    'postcss-pxtorem': {
+      //需要以iphone6作为标准屏
+      rootValue: 37.5,
+      propList: ['*'],
+    },
+  },
+};
+
+在main.js引入lib-flexible
+import 'lib-flexible/flexible'
+
+安装axios、vue-axios
+npm i axios vue-axios --save
+
+参考文档
+http://www.axios-js.com/zh-cn/docs/
+
+
+父子组件通讯
