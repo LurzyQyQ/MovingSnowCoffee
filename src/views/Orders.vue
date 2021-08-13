@@ -29,13 +29,13 @@
       <div class="box-box">
         <div class="box-establish" v-show="currIndex == 0">
           <div class="establish-item">
-            <div class="title-text">
+            <!-- <div class="title-text">
               <div class="text-bianhao">{{ overOid }}</div>
               <div class="text-isover">已完成</div>
               <div class="text-icon">
                 <i class="fa fa-trash" @click="deleteShop"></i>
               </div>
-            </div>
+            </div> -->
 
             <!-- 已完成部分 -->
             <div class="shop-item" v-for="(item, index) in isOver" :key="index">
@@ -64,14 +64,14 @@
               <div class="count-box">
                 <div class="box-data-time">{{ overUpdatedAt }}</div>
                 <div class="box-bottom">
-                  <div class="box-counts">共计{{ overCounts }}件</div>
-                  <div class="box-allmoney">合计￥{{ overTotalSumAll }}.00</div>
+                  <div class="box-counts">共计{{ allCounts }}件</div>
+                  <div class="box-allmoney">合计￥{{ allTotalSumAll2 }}.00</div>
                 </div>
               </div>
             </div>
 
             <!-- 确认收货栏 -->
-            <div class="yes-shop-box">
+            <div class="yes-shop-box" v-show="oneShop != ''">
               <div class="shop-box-item">
                 <div class="box-title">
                   <div class="box-item-title">{{ oneOid }}</div>
@@ -105,7 +105,7 @@
             </div>
           </div>
         </div>
-
+        
         <div class="box-collection" v-show="currIndex == 1">
           <div class="establish-item">
             <!-- 确认收货栏 -->
@@ -239,6 +239,8 @@ export default {
 
       overUpdatedAt: "",
       isoverUpdatedAt: "",
+
+      allTotalSumAll2: 0,
     };
   },
   methods: {
@@ -259,12 +261,14 @@ export default {
             },1000)
           } else {
             this.allShop = res.data.result;
+            console.log(this.allShop);
             this.allShop.map((v) => {
               this.oids = v.oid;
               this.allCounts += v.count;
-              this.allTotalSumAll += v.count * v.price;
+              this.allTotalSumAll2 += v.count * v.price;
             });
           }
+          console.log(this.allTotalSumAll2);
         })
         .catch((err) => {});
     },
@@ -300,12 +304,13 @@ export default {
       }).then((res) => {
         this.isOver = res.data.result;
         this.isOver.map((v) => {
+          console.log(v);
           this.overUpdatedAt = v.updatedAt;
           this.overOid = v.oid;
           this.overCounts += v.count;
           this.overTotalSumAll += v.count * v.price;
+          // console.log(this.overTotalSumAll);
         });
-        console.log(this.overOid);
       });
     },
     // 确认收货
@@ -321,11 +326,12 @@ export default {
       }).then((res) => {
         if (res.data.code == 80000) {
           this.$toast(res.data.msg);
+          location.reload()
         }
         console.log(res);
       });
     },
-    // 确认收货
+    // 删除订单
     deleteShop() {
       this.axios({
         method: "post",
@@ -337,6 +343,7 @@ export default {
       }).then((res) => {
         if (res.data.code == 90000) {
           this.$toast(res.data.msg);
+          location.reload()
         }
         console.log(res);
       });
@@ -357,6 +364,10 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.sh-box{
+  color: gray;
+  text-align: center;
+}
 .bottom-count-box {
   width: 100%;
   height: 50px;
@@ -765,7 +776,7 @@ export default {
       width: 95%;
       border-top-left-radius: 10px;
       border-top-right-radius: 10px;
-      background: #ffffff;
+      // background: #ffffff;
       padding: 10px;
       .yes-shop-box {
         width: 100%;

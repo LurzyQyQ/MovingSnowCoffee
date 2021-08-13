@@ -214,6 +214,7 @@ export default {
     },
     // 立即结算
     pay(){
+      sessionStorage.setItem("allMoney", this.moneyAll);
       this.axios({
         method: "post",
         url: "/pay",
@@ -226,6 +227,7 @@ export default {
         },
       })
       .then((res) => {
+        this.$router.push({name: "Shopbag"});
       })
       .catch((err) => {});
     }
