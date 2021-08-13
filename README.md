@@ -3,8 +3,8 @@
 ### 下载
 
 ```
-$ git clone https://github.com/LurzyQyQ/luckincoffee_coffee_vue.git$ 
-npm install
+$ git clone https://github.com/LurzyQyQ/luckincoffee_coffee_vue.git
+$ npm install
 ```
 
 ### 运行
