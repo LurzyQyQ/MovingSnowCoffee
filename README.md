@@ -65,6 +65,7 @@ $ npm run serve
 6. vant Loading (加载提示)  
 7. vant Swipe轮播图   
 8. 组件间通信（添加商品至购物车时，购物车数量要改变）  
+......  
 
 ## 项目打包
 
