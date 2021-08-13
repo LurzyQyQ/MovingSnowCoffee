@@ -1,19 +1,13 @@
-# luckincoffee
+# luckincoffee### 环境要求 需要 NodeJS 8.12+ 环境
 
-## Project setup
+### 下载
+
 ```
+$ git clone https://github.com/LurzyQyQ/luckincoffee_coffee_vue.git$ 
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### 运行
 ```
-npm run serve
+$ npm run serve
 ```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
