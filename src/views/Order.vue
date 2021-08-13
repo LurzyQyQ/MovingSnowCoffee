@@ -117,7 +117,7 @@
       <!-- 底部结算按钮 -->
       <div class="bottom-over">
         <div class="over">
-          <button>新增地址</button>
+          <button @click="gotoAddAddRess">新增地址</button>
         </div>
       </div>
     </div>
@@ -143,6 +143,10 @@ export default {
     };
   },
   methods: {
+    // 跳转新增地址页面
+    gotoAddAddRess(){
+      this.$router.push({name: 'Address'})
+    },
     // 获取地址
     findAddress() {
       this.axios({
