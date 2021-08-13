@@ -6,6 +6,7 @@
 
 ```
 $ git clone https://github.com/LurzyQyQ/luckincoffee.git
+
 $ npm install
 ```
 
